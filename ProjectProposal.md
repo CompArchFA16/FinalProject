@@ -20,6 +20,7 @@ Traffic Light Control System Architecture: http://ieeexplore.ieee.org/abstract/d
 **Minimum Goals**
 
 Simple, four-way intersection with timer based traffic control:
+
 * Circuits for car traffic signals, pedestrian traffic signals, and controller
 * Verilog simulation of system
 * Testbench showing correct signaling
@@ -27,9 +28,11 @@ Simple, four-way intersection with timer based traffic control:
 **Planned Goals**
 
 Extension 1
+
 * Add the circuit for a turn lane signal and integrate it into the traffic controller
 
 Extension 2
+
 * Adaptive traffic control using sensor inputs to determine the frequency of passing cars and/or pedestrians
 
 **Stretch Goals**
@@ -56,6 +59,7 @@ By Midpoint Checkin (12/5)
 **Extensions**
 
 For each of the extension deliverables, we will need to expand the following:
+
 * Logic Tree - 15 min
 * Circuit Diagrams - 30 min
 * Verilog simulation - 2 hrs
