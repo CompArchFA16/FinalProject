@@ -20,4 +20,7 @@ module testPedestrianSignal();
 
       $dumpfile("pedestrian_signal.vcd");
       $dumpvars();
+
+   end
       
+endmodule; // testPedestrianSignal
