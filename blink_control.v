@@ -20,7 +20,7 @@ always @(posedge clk)
 	end
 
 	// Blink and reset when upcounter is full
-	assign blink = &upCounter;
+	blink <= &upCounter;
 	reset <= 1'b1;
 
 endmodule
