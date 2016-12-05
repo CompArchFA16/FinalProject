@@ -1,7 +1,7 @@
 // Pedestrian traffic light module
 
-`import "blink_control.v"
-`import "mux.v"
+`include "blink_control.v"
+`include "mux.v"
 
 module pedestrianSignal
 (
@@ -12,19 +12,13 @@ module pedestrianSignal
 	output personLED
 );
 
-wire handMux;
-wire personMux;
-wire [3:0] handMuxInput;
+	wire handMux;
+	wire personMux;
+	wire [3:0] handMuxInput;
 
-mux2Wire mux2to1(1, 0, fsmPersonControl, personLED);
-mux3Wire mux4to1(handMuxInput, fsmHandControl, handLED);
+	assign handMuxInput = {1, 0, blink, 0};
 
-always @(posedge clk)
-
-	// Set person LED
-
-	// Set up hand control mux input
-
-	// Set hand LED
+	mux2to1 mux2Wire(1, 0, fsmPersonControl, personLED);
+	mux4to1 mux3Wire(handMuxInput, fsmHandControl, handLED);
 
 endmodule
