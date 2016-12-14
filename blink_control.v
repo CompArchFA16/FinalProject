@@ -2,22 +2,31 @@
 
 module blinkTimer
 (
-	input clk,
-	input reset,
-	output blink
+ input 	    clk,
+	    enable_wire,
+	    reset_wire,
+ output reg blink
 );
 
-wire [14:0] upCounter;
+   reg [14:0] upCounter;
+   reg 	      enable; 	      
+   reg 	      reset;
+   
+   always @(posedge clk) begin
 
-always @(posedge clk)
+      enable = enable_wire;
+      reset  = reset_wire; 
+      
+      // Up counter
+      if (reset) begin
+	 upCounter <= 15'b0;
+      end 
+      else if (enable) begin
+	 upCounter <= upCounter + 1;
+      end
 
-	// Up counter
-	if (reset) begin
-		upCounter <= 8'b0 ;
-	end else if (enable) begin
-		upCounter <= upCounter + 1;
-	end
-
-	assign blink = &upCounter;
-
+      assign blink = &upCounter;
+      
+   end // always @ (posedge clk)
+   
 endmodule
