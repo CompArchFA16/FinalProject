@@ -3,6 +3,7 @@
 //---------------------------------------------------------------------
 
 `include "blink_control.v"
+`timescale 1ns / 1ns
 
 module testBlinkControl();
 
@@ -31,6 +32,7 @@ module testBlinkControl();
       reset = 0; enable = 1; #2500
       reset = 0; enable = 0; #2500
       reset = 1; enable = 1; #2500
+      reset = 0; enable = 1; #2000000000
 
       $finish;
    end

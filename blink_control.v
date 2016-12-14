@@ -8,9 +8,13 @@ module blinkTimer
  output reg blink
 );
 
-   reg [14:0] upCounter;
+   reg [22:0] upCounter;
    reg 	      enable; 	      
    reg 	      reset;
+
+   initial begin
+      blink = 0;
+   end
    
    always @(posedge clk) begin
 
@@ -19,13 +23,16 @@ module blinkTimer
       
       // Up counter
       if (reset) begin
-	 upCounter <= 15'b0;
+	 upCounter <= 23'b0;
       end 
       else if (enable) begin
-	 upCounter <= upCounter + 1;
+	 upCounter <= upCounter + 1;	 
       end
 
-      assign blink = &upCounter;
+      if (upCounter == 23'b10011000100101101000000) begin
+	 blink=!blink;
+	 upCounter <= 23'b0;
+      end
       
    end // always @ (posedge clk)
    
