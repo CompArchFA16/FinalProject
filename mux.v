@@ -22,3 +22,24 @@ module mux4to1(a,sel,out);
 	        m2 (a[1],a[4],sel[0],mux_2),
 	        m3 (mux_1,mux_2,sel[1],out);
 endmodule
+
+// 4 wire output - default to first
+module dmux1to4(in, sel, out);
+	input in;
+	input [1:0] sel;
+	output reg [3:0] out;
+
+	always@(*)
+	begin
+		if ( sel == 2'd0) 
+			out[0] = in;
+		else if (sel == 2'd1)
+			out[1] = in;
+		else if (sel == 2'd2)
+			out[2] = in;
+		else if (sel == 2'd3)
+			out[3] = in;
+		else
+			out[0] = in;		 
+	end
+endmodule
