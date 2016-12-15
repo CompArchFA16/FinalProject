@@ -24,15 +24,15 @@ module intersectionController
 
 // States
 reg state;
-assign reg = 3'b001;
+assign state = 3'b001;
 
 // Counters
-reg enableRedGreen;
+wire enableRedGreen;
 wire resetRedGreen;
 reg [16:0] timeRedGreen;
-assign timeRed = redTime * 13'b1001110001000;
+assign timeRedGreen = redTime * 13'b1001110001000;
 
-reg enableYellow;
+wire enableYellow;
 wire resetYellow;
 reg [16:0] timeYellow;
 assign timeYellow = yellowTime * 13'b1001110001000;
@@ -73,27 +73,95 @@ always@(*)
 			lane3Control = 2'b00;
 			lane4Control = 2'b00;
 
-			// Reset the counter
-
+			// Reset and enable the counter
+			resetRedGreen = 1'b1;
+			resetRedGreen = 1'b0;
 
 			// Wait for the counter to finish
-			if 
+			while (resultRedGreen == 0) begin
+				enableRedGreen = 1'b1;
+			end
 
-			// Move to the next state
+			// Disable the counter and move to the next state
+			enableRedGreen = 1'b0;
+			state = state + 1;
 			
 		// STATE 2
 		else if (state == 3'd2)
+			// Set L 1,2 Yellow
+			lane1Control = 2'b01;
+			lane2Control = 2'b01;
+
+			// Set L 3,4 Red
+			lane3Control = 2'b00;
+			lane4Control = 2'b00;
+
+			// Reset and enable the counter
+			resetYellow = 1'b1;
+			resetYellow = 1'b0;
+
+			// Wait for the counter to finish
+			while (resultYellow == 0) begin
+				enableYellow = 1'b1;
+			end
+
+			// Disable the counter and move to the next state
+			enableYellow = 1'b0;
+			state = state + 1;
 		
 		// STATE 3
 		else if (state == 3'd3)
+			// Set L 1,2 Red
+			lane1Control = 2'b00;
+			lane2Control = 2'b00;
+
+			// Set L 3,4 Green
+			lane3Control = 2'b10;
+			lane4Control = 2'b10;
+
+			// Reset and enable the counter
+			resetRedGreen = 1'b1;
+			resetRedGreen = 1'b0;
+
+			// Wait for the counter to finish
+			while (resultRedGreen == 0) begin
+				enableRedGreen = 1'b1;
+			end
+
+			// Disable the counter and move to the next state
+			enableRedGreen = 1'b0;
+			state = state + 1;
 		
 		// STATE 4
 		else if (state == 3'd4)
+			// Set L 1,2 Red
+			lane1Control = 2'b00;
+			lane2Control = 2'b00;
+
+			// Set L 3,4 Yellow
+			lane3Control = 2'b01;
+			lane4Control = 2'b01;
+
+			// Reset and enable the counter
+			resetYellow = 1'b1;
+			resetYellow = 1'b0;
+
+			// Wait for the counter to finish
+			while (resultYellow == 0) begin
+				enableYellow = 1'b1;
+			end
+
+			// Disable the counter and move to the next state
+			enableYellow = 1'b0;
+			state = state + 1;
 		
 		// STATE 5
 		else
-			// Invalid state
+			// Error: Turn all the lights to red
+			lane1Control = 2'b00;
+			lane2Control = 2'b00;
+			lane3Control = 2'b00;
+			lane4Control = 2'b00;
 	end
-
 
 endmodule
