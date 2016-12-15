@@ -1,88 +1,79 @@
-# CompArch Final Project
+# Exploring the (GP)GPU
+David Zhu, Bill Du | Computer Architecture Fall 2016
 
-The goal of the final project is for you to explore a topic of interest within Computer Architecture, driven by your personal learning goals. This could build on and extend something we discussed in class, or dive into some other area of Computer Architecture (broadly defined).
+For Computer Architecture Fall 2016, we explored the CPU, starting with the fundamentals and moving to a specific implementation (MIAOW) and several example programs. The following sections document our learnings in this project.
 
-You may work in teams of any size, as long as they are appropriately scaled for your proposed project. Groups with > 4 members will face heavy skepticism about meeting this requirement. 
+## PART 1: Fundamentals
 
-In terms of scale, this is not a months-long capstone but rather more like an extended Lab. You will have about 2 weeks to complete it, and it will comprise 15% of your final grade. Be ambitious but realistic.
+### About
 
-## Timeline
+To better understand the power of GPUs, we must first understand the fundamentals of this processor. The following poster is our synthesis of our research, detailing what a GPU and GPGPU is and how it compares with CPUs.
 
--	Nov 17 (in class) – project ideation and team formation fair
--	Nov 28 (in class) – draft project proposal due , consultations with teams
--	Nov 29 – revised project proposal and work plan due
--	Dec 5 – mid-point check in (self-defined in work plan, highly recommended)
--	Dec 15 – final project due
+<Poster 1>
 
-## Proposal (10%)
-Your project proposal should be about 1-2 pages, and must include:
+### Process
+This knowledge is gained from a variety of sources. Here are a few.
 
--	Project title
--	Team members
--	Brief description of project (1-3 paragraphs)
--	2-3 references you plan to use
--	Minimum, planned, and stretch deliverables
--	Work plan (by Tuesday)
+- TechTarget offers some basic definitions and historical contexts.
+- CUNY paper describes in greater detail the 3D functions of GPUs.
+- University of Bristol is a quick presentation on GPU computing.
+- Common shader core is an example of a unified shader model.
+- A Microsoft Developer blog explains how branching may work inside a compute unit.
+- OpenGL has a detailed rendering pipeline which explains the execution process of a GPU.
 
-We will discuss your proposal in class on November 28 (first class after break). These meetings will be quick and to-the-point, so you must come prepared with a printed out copy of your proposal. You should have done some background research by this point and have a good idea of your planned project trajectory.
+Notes can be found in the appendix/ folder, within the PDFs.
 
-Based on the feedback from this meeting, you will revise your proposal and submit the final version including a work plan the following day.
+## PART 2: MIAOW
 
-## Documentation (55%)
-The documentation counts for 55% of your grade whether you succeed at your goal or not.  Did you shoot for the moon and land among the harsh vacuum of space?  You still learned something from the process, and as long as you document it well, you will get full credit.
+### About
+Looking more specifically at GPUs, we discovered an open source implementation of a GPU’s compute unit, called MIAOW. From there, we took a deeper look at their whitepapers and source code to better understand how the internals of a GPU actually works. The following is a poster synthesis of our results:
 
-Documentation should be posted in the form of a project website (PDF or MarkDown in a repo can also be acceptable depending on the project) and must answer the following questions:
+<Poster 2>
 
-### What did you do?
-Your project abstract: one catchy sentence followed by a paragraph or two.  The intended audience should include people that aren't necessarily versed in Computer Architecture, but are technically competent. 
-### Why did you do it?
-A paragraph or so about why the project you chose is worthwhile and interesting.
-### How did you do it?
-This portion can assume an audience that has taken Computer Architecture, but don't let the story you’re telling get bogged down by buzzwords.  A sure sign of a bad engineer is ORA (over reliance on acronyms). 
+### Process
+MIAOW has a lot of great documentation. Here are the following:
 
-### How can someone else build on it?
-Include everything necessary to pick up where you left off.  This should include (as appropriate):
+- Their Github contains the source code of their GPU, written using Verilog HDL.
+- Their whitepaper contains very important details on their architecture and process, which provided us the explanations and visuals you see in the above poster.
+- GCN Architecture Whitepaper provides additional information on MIAOW’s AMD inspiration.
 
--	code
--	schematics
--	scripts and build instructions
-- proper attribution for resources used and anything you did not write yourself
--	list of difficulties and ‘gotchas’ while doing this project
-- reflection on the project as a whole as well as your work plan
--	possible TODOs to extend the depth of the project
+Additional notetaking can be found in the appendix/ folder.
 
-This should all be posted somewhere accessible, e.g. your project webpage or repository. Please do not literally include these question prompts and then answer them (you're better than that) - instead, use them to check that you've covered all the bases as you tell the story in the way that best makes sense for your project.
+## PART 3: Programming
 
-## Choosing and Achieving your Goal (30%)
-There is a lot of flexibility available in what your actual final project can be. As a first pass, it needs to satisfy the following criteria:
+###About
+For programming part, we experimented with three different  programs. One program is written in CUDA, while the other two are in OpenCL. They are built to experiment with image processing and matrix multiplication.
+We wrote these programs to better understand parallel programming in practice, learning more about how working with CUDA and OpenCL is like. Parallel programming is a brand new field of programming that neither of us has learnt before. There are several new hardware paradigms that we must consider (as shown above) that also impact how we program, such as kernels and synchronization.
 
-1. Build upon what we have learned in class this semester or other "Computer Architecture" topics
-1. Have well-defined criteria for when it is finished and successful
-1. Be achievable within the time allotted
+The typical workflow for running code on a GPU is as follows:
 
-## Possible broad directions:
+- Memory is allocated to the GPU based on what computation is needed.
+- A programmed kernel is added to the GPU queue, waiting for execution.
+- Data is sent to the GPU, which the kernel executes on.
+- The result is collected from the GPU back to the host.
+- Memory is freed.
 
-- Extending something you started in Computer Architecture
-- Teaching somebody something cool about Computer Architecture
-- Something useful to someone that uses Computer Architecture
-- Something that needs the skills learned in Computer Architecture
-- Something that you can present at Expo that will make people want to take Computer Architecture
+Throughout this process, the programmer communicates with the GPU through a series of APIs that are defined by the GPU language. Inside a kernel,  
 
-Append one of the following phrases to a cool project idea to make it more CompArch-y:
+### CUDA Gaussian Blur
+The first is a CUDA implementation of a Gaussian blur.  The program takes in and blurs an image given a matrix of weights (called a convolution kernel). The program breaks the image into a matrix of pixels and average each pixel’s RGB value based on Gaussian  weights, which is much smoother than simply averaging the adjacent pixels’ RGB values.
 
-- ... with an FPGA
-- ... in assembly
-- ... on a GPU
-- ... inside a nested series of black boxes
-- ... hardware accelerated
+The CUDA implementation follows the Udacity tutorials.
 
-As you put your project plans together, remember that a major portion of the project is communicating it to others.
+To reach our MVP, we went through an introductory course to parallel programming on Udacity. From there, we learned how parallel programming differs from serial programming and what unique patterns and performances it has, and in addition, how to write actual code.
 
-## Demo (5%)
-We’ll present your project work during the time blocked out for "final exam" period – December 15 from 12 – 3PM.  This is mainly an opportunity to show off and celebrate your great work (small percentage of overall grade), and the details are up to you.
+Based on the instructions from that course, we wrote our own program to blur images. There were 3 steps to blur an image: breaking the image into 3 separate images that each one only contains one color channel, blur the 3 images by recalculating the color value for each pixel, and finally, recombining the 3 images to form the new blurred image. These 3 steps were written in 3 separate kernels in traditional C++. After that, we went on to the next step of parallel programming: allocating memories. We allocated shared memories for each block of threads and local memories for each individual thread, and copied the original picture data from host memory(CPU memory) to the device memory(GPU global memory).  Finally, we define the block size to be 64 by 64 and launch the kernels one by one. At the end of each kernel, we added a barrier to synchronize all threads, so that the GPU wait for all threads to finish the current kernel before going on to the next one.
 
-The "default" option is a poster version of your project documentation (along with a running live demo if appropriate), so that folks can walk around in a studio session and see what you did. Maybe you feel that a presentation is more appropriate for your project work. Perhaps a tutorial session with everyone participating makes the most sense. It could be that only a puppet show truly captures the essence of your project. Think about final demo format as you put together your proposal, but you don't need to make a final decision just yet.
+#### Problems/Difficulties
+When we started to learn parallel programming, the first thing we worried about is that neither of us know C/C++, which is used in both CUDA and OpenCL. For such reason, we struggled with writing the kernels, which are the foundations in GPU parallel programming. To solve this problem, we went through a lot of simple CUDA codes to get a sense of how C++ works, and as we became familiar with it, we became more confident . Another roadblock we encountered when coding was about memory allocation. Although we were clear about how global memory, shared memory, and local memory differs from each other, we were confused trying to allocate the correct type of memory. We spent a lot of time looking at sample codes and debugging and finally managed to fix the program.  After having  the CUDA code running correctly on the platform on Udacity, we tried to run it on our machines locally. However  we did not make it due to compatibility issues between CUDA toolkits and Microsoft Visual Studio.
 
-Good luck, and have fun!
+### OpenCL Image Filters
+The second program is an OpenCL implementation of simple filtering in general. It has a gaussian filter capability,  as well as examples of sharpening and primitive edge detection. One thing to note is that this implementation has less complexity than the one above because it does not split colors.
+The image filter code is written by following/copying  this OpenCL tutorial.
+To test the program, run:
 
+<TODO>
 
+### OpenCL Matrix Multiplication
+The third program is an OpenCL implementation of matrix multiplication. It can do large-scale matrix multiplication  in parallel, limited by workgroup sizes.
+The matrix multiplication code is written by following/copying  this tutorial.
