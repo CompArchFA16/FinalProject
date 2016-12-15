@@ -3,7 +3,7 @@
 //---------------------------------------------------------------------
 
 `include "car_signal.v"
-`timescale 1ns / 1ns
+`timescale 1ms / 1us
 
 module testCarSignal();
 

@@ -20,9 +20,9 @@ module upCounter
    end
 
    always @(posedge clk) begin
-      enable       = enable_wire;
-      reset        = reset_wire;
-      count_target = count_target_wire;
+      enable       <= enable_wire;
+      reset        <= reset_wire;
+      count_target <= count_target_wire;
 
       if (reset) begin
 	 counter <= 17'b0;

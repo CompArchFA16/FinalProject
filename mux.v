@@ -28,17 +28,16 @@ module dmux1to4(in, sel, out);
 	input [1:0] sel;
 	output reg [3:0] out;
 
-	always@(*)
-	begin
+	initial begin
 		if (sel == 2'd0) 
-			out[0] = in;
+			out[0] <= in;
 		else if (sel == 2'd1)
-			out[1] = in;
+			out[1] <= in;
 		else if (sel == 2'd2)
-			out[2] = in;
+			out[2] <= in;
 		else if (sel == 2'd3)
-			out[3] = in;
+			out[3] <= in;
 		else
-			out[0] = in;		 
+			out[0] <= in;		 
 	end
 endmodule

@@ -48,7 +48,7 @@ module testIntersectionController();
       redTime = 5'd10;
       yellowTime = 5'd10;
       greenTime = 5'd10;
-            
+
       if(leds1 != 4'b0010 &&
 	 leds2 != 4'b0010 &&
 	 leds3 != 4'b1000 &&

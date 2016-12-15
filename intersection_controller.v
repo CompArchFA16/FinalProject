@@ -29,11 +29,11 @@ reg state = 3'b001;
 // Counters
 reg enableRedGreen;
 reg resetRedGreen;
-wire [16:0] timeRedGreen = redTime * 13'b1001110001000;
+wire [16:0] timeRedGreen = redTime * 17'b1001110001000;
 
 reg enableYellow;
 reg resetYellow;
-wire [16:0] timeYellow = yellowTime * 13'b1001110001000;
+wire [16:0] timeYellow = yellowTime * 17'b1001110001000;
 
 // Lights
 reg [1:0] lane1Control;
@@ -45,8 +45,18 @@ reg [1:0] lane4Control;
 //// Modules ////
 
 // Counters
-upCounter countRedGreen(clk, enableRedGreen, resetRedGreen, timeRedGreen, resultRedGreen);
-upCounter countYellow(clk, enableYellow, resetYellow, timeYellow, resultYellow);
+upCounter countRedGreen(.clk(clk), 
+			.enable_wire(enableRedGreen),
+			.reset_wire(resetRedGreen), 
+			.count_target_wire(timeRedGreen), 
+			.count_result(resultRedGreen)
+			);
+upCounter countYellow(.clk(clk), 
+		      .enable_wire(enableYellow), 
+		      .reset_wire(resetYellow), 
+		      .count_target_wire(timeYellow), 
+		      .count_result(resultYellow)
+		      );
 
 // upCounter countHand(clk, enableHand, resetHand, timeHand, resultHand);
 // upCounter countPerson(clk, enablePerson, resetPerson, timePerson, resultPerson);
@@ -59,21 +69,20 @@ carSignal lane4(lane4Control, leds4);
 
 
 //// FSM ////
-always@(*)
-	begin
+always @(posedge clk) begin
 		// STATE 1
 		if (state == 3'd1) begin
 			// Set L 1,2 Green
-			lane1Control <= 2'd2;
-			lane2Control <= 2'd2;
+			lane1Control = 2'd2;
+			lane2Control = 2'd2;
 
 			// Set L 3,4 Red
 			lane3Control = 2'b00;
 			lane4Control = 2'b00;
 
 			// Reset and enable the counter
-			resetRedGreen = 1'b1;
-			resetRedGreen = 1'b0;
+			// resetRedGreen = 1'b1;
+			// resetRedGreen = 1'b0;
 
 			// Wait for the counter to finish
 			while (resultRedGreen == 0) begin
