@@ -1,6 +1,5 @@
 // Pedestrian traffic light module
 
-`include "blink_control.v"
 `include "mux.v"
 
 module pedestrianSignal

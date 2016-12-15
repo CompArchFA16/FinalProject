@@ -7,6 +7,7 @@
 module testPedestrianSignal();
 
    // Reg's and wires for pedestrianSignal module
+   reg 
    
    pedestrianSignal pedSignal();
    

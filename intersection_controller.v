@@ -1,18 +1,99 @@
 // Intersection controller module
 
+`include "car_signal.v"
+`include "pedestrian_signal.v"
+`include "up_counter.v"
+
 module intersectionController
 (
+	input clk,
+
 	input [5:0] perTime, 
 	input [5:0] handTime, 
 	input [5:0] redTime, 
 	input [5:0] yellowTime, 
 	input [5:0] greenTime,
 
-	output fsmPedControl, 
+	output fsmHandControl, 
+	output fsmPersonControl,
 	output fsmCarControl
 );
 
-// Module definitions
+
+//// Wires ////
+
+// States
+reg state;
+assign reg = 3'b001;
+
+// Counters
+reg enableRedGreen;
+wire resetRedGreen;
+reg [16:0] timeRedGreen;
+assign timeRed = redTime * 13'b1001110001000;
+
+reg enableYellow;
+wire resetYellow;
+reg [16:0] timeYellow;
+assign timeYellow = yellowTime * 13'b1001110001000;
+
+// Lights
+reg [1:0] lane1Control;
+reg [1:0] lane2Control;
+reg [1:0] lane3Control;
+reg [1:0] lane4Control;
+
+
+//// Modules ////
+
+// Counters
+upCounter countRedGreen(clk, enableRedGreen, resetRedGreen, timeRedGreen, resultRedGreen);
+upCounter countYellow(clk, enableYellow, resetYellow, timeYellow, resultYellow);
+
+upCounter countHand(clk, enableHand, resetHand, timeHand, resultHand);
+upCounter countPerson(clk, enablePerson, resetPerson, timePerson, resultPerson);
+
+// Lights
+carSignal lane1(lane1Control, leds1);
+carSignal lane2(lane2Control, leds2);
+carSignal lane3(lane3Control, leds3);
+carSignal lane4(lane4Control, leds4);
+
+
+//// FSM ////
+always@(*)
+	begin
+		// STATE 1
+		if (state == 3'd1)
+			// Set L 1,2 Green
+			lane1Control = 2'b10;
+			lane2Control = 2'b10;
+
+			// Set L 3,4 Red
+			lane3Control = 2'b00;
+			lane4Control = 2'b00;
+
+			// Reset the counter
+
+
+			// Wait for the counter to finish
+			if 
+
+			// Move to the next state
+			
+		// STATE 2
+		else if (state == 3'd2)
+		
+		// STATE 3
+		else if (state == 3'd3)
+		
+		// STATE 4
+		else if (state == 3'd4)
+		
+		// STATE 5
+		else
+			// Invalid state
+	end
 
 
 endmodule
