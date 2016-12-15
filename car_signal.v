@@ -4,10 +4,10 @@
 
 module carSignal
 (
-	input [1:0] fsmCarControl,
-	output [3:0] leds
+ input  [1:0] fsmCarControl,
+ output [3:0] leds
 );
 
-	dmux1to4 carMux(1'b1, fsmCarControl, leds);
+   dmux1to4 carMux(1'b1, fsmCarControl, leds);
 
 endmodule
