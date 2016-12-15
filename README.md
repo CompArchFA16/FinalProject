@@ -1,5 +1,5 @@
 # Exploring the (GP)GPU
-David Zhu, Bill Du | Computer Architecture Fall 2016
+*David Zhu, Bill Du | Computer Architecture Fall 2016*
 
 For Computer Architecture Fall 2016, we explored the CPU, starting with the fundamentals and moving to a specific implementation (MIAOW) and several example programs. The following sections document our learnings in this project.
 
@@ -9,7 +9,7 @@ For Computer Architecture Fall 2016, we explored the CPU, starting with the fund
 
 To better understand the power of GPUs, we must first understand the fundamentals of this processor. The following poster is our synthesis of our research, detailing what a GPU and GPGPU is and how it compares with CPUs.
 
-<Poster 1>
+![Fundamentals](assets/fundamentals.png)
 
 ### Process
 This knowledge is gained from a variety of sources. Here are a few.
@@ -28,7 +28,7 @@ Notes can be found in the appendix/ folder, within the PDFs.
 ### About
 Looking more specifically at GPUs, we discovered an open source implementation of a GPU’s compute unit, called MIAOW. From there, we took a deeper look at their whitepapers and source code to better understand how the internals of a GPU actually works. The following is a poster synthesis of our results:
 
-<Poster 2>
+![MIAOW](assets/miaow.png)
 
 ### Process
 MIAOW has a lot of great documentation. Here are the following:
