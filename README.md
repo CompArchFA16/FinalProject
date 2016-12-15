@@ -56,6 +56,8 @@ The typical workflow for running code on a GPU is as follows:
 Throughout this process, the programmer communicates with the GPU through a series of APIs that are defined by the GPU language. Inside a kernel,  
 
 ### CUDA Gaussian Blur
+*Go to README.md under blur_image_CUDA to see details about the program.*
+
 The first is a CUDA implementation of a Gaussian blur.  The program takes in and blurs an image given a matrix of weights (called a convolution kernel). The program breaks the image into a matrix of pixels and average each pixel’s RGB value based on Gaussian  weights, which is much smoother than simply averaging the adjacent pixels’ RGB values.
 
 The CUDA implementation follows the [Udacity tutorials](https://www.udacity.com/course/intro-to-parallel-programming--cs344).
