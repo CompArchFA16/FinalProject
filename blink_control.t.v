@@ -3,20 +3,21 @@
 //---------------------------------------------------------------------
 
 `include "blink_control.v"
-`timescale 1ns / 1ns
+`timescale 1ms / 1us
 
 module testBlinkControl();
 
-   // Generate 10 Mhz clock
+   // Generate 1 Khz clock
    reg clk;
    initial clk=0;
-   always #50 clk=!clk;
+   always #0.5 clk=!clk;
 
    // Reg's and wires for blinkTimer module
-   reg reset;
-   reg enable;
+   reg  reset;
+   reg  enable;
    wire blink;
-
+   reg 	dutpassed;
+	
    blinkTimer blinker(.clk(clk),
 		      .enable_wire(enable),
 		      .reset_wire(reset),
@@ -28,11 +29,47 @@ module testBlinkControl();
       $dumpfile("blink_control.vcd");
       $dumpvars();
 
-      reset = 1; enable = 0; #2500
-      reset = 0; enable = 1; #2500
-      reset = 0; enable = 0; #2500
-      reset = 1; enable = 1; #2500
-      reset = 0; enable = 1; #2000000000
+      dutpassed = 1;
+
+      #10;
+      if(blink != 0) begin
+	 dutpassed = 0;
+	 $display("Blink Timer: FAILED TEST 1");
+      end
+
+      reset = 1; enable = 0; #10;
+      if (blink != 0) begin
+	 dutpassed = 0;
+	 $display("Blink Timer: FAILED TEST 2");
+      end
+
+      reset = 0; enable = 1; #510;
+      if (blink != 1) begin
+	 dutpassed = 0;
+	 $display("Blink Timer: FAILED TEST 3");
+      end
+
+      reset = 0; enable = 0; #10;
+      if (blink != 1) begin
+	 dutpassed = 0;
+	 $display("Blink Timer: FAILED TEST 4");
+      end
+
+      reset = 1; enable = 1; #10;
+      if (blink != 0) begin
+	 dutpassed = 0;
+	 $display("Blink Timer: FAILED TEST 5");
+      end
+
+      reset = 0; enable = 1; #1010;
+      if (blink != 0) begin
+	 dutpassed = 0;
+	 $display("Blink Timer: FAILED TEST 6");
+      end
+
+      if (dutpassed) begin
+	 $display("Blink Timer: PASSED");
+      end
 
       $finish;
    end
