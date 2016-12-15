@@ -1,0 +1,99 @@
+$date
+	Thu Dec 15 00:20:48 2016
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module mux4to1_new $end
+$var wire 4 ! a [3:0] $end
+$var wire 1 " mux_1 $end
+$var wire 1 # mux_2 $end
+$var wire 1 $ out $end
+$var wire 2 % sel [1:0] $end
+$scope module m1 $end
+$var wire 1 & a $end
+$var wire 1 ' b $end
+$var wire 1 " out $end
+$var wire 1 ( sel $end
+$upscope $end
+$scope module m2 $end
+$var wire 1 ) a $end
+$var wire 1 * b $end
+$var wire 1 # out $end
+$var wire 1 + sel $end
+$upscope $end
+$scope module m3 $end
+$var wire 1 " a $end
+$var wire 1 # b $end
+$var wire 1 $ out $end
+$var wire 1 , sel $end
+$upscope $end
+$upscope $end
+$scope module testCarSignal $end
+$var wire 4 - signalOutput [3:0] $end
+$var reg 1 . dutpassed $end
+$var reg 2 / rygChoice [1:0] $end
+$scope module signalOne $end
+$var wire 2 0 fsmCarControl [1:0] $end
+$var wire 4 1 leds [3:0] $end
+$scope module carMux $end
+$var wire 1 2 in $end
+$var wire 2 3 sel [1:0] $end
+$var reg 4 4 out [3:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx1 4
+bx 3
+12
+bx1 1
+bx 0
+bx /
+1.
+bx1 -
+z,
+z+
+x*
+z)
+z(
+z'
+z&
+bz %
+x$
+x#
+x"
+bz !
+$end
+#10
+bx11 4
+bx11 -
+bx11 1
+b1 /
+b1 0
+b1 3
+#20
+bx111 4
+bx111 -
+bx111 1
+b10 /
+b10 0
+b10 3
+#30
+b1111 4
+b1111 -
+b1111 1
+b11 /
+b11 0
+b11 3
+#40
+b1111 4
+b0 /
+b0 0
+b0 3
+#50

@@ -1,0 +1,282 @@
+$date
+	Thu Dec 15 04:19:50 2016
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1us
+$end
+$scope module dmux1to4 $end
+$var wire 1 ! in $end
+$var wire 2 " sel [1:0] $end
+$var reg 4 # out [3:0] $end
+$upscope $end
+$scope module mux4to1_new $end
+$var wire 4 $ a [3:0] $end
+$var wire 1 % mux_1 $end
+$var wire 1 & mux_2 $end
+$var wire 1 ' out $end
+$var wire 2 ( sel [1:0] $end
+$scope module m1 $end
+$var wire 1 ) a $end
+$var wire 1 * b $end
+$var wire 1 % out $end
+$var wire 1 + sel $end
+$upscope $end
+$scope module m2 $end
+$var wire 1 , a $end
+$var wire 1 - b $end
+$var wire 1 & out $end
+$var wire 1 . sel $end
+$upscope $end
+$scope module m3 $end
+$var wire 1 % a $end
+$var wire 1 & b $end
+$var wire 1 ' out $end
+$var wire 1 / sel $end
+$upscope $end
+$upscope $end
+$scope module pedestrianSignal $end
+$var wire 1 0 blink $end
+$var wire 2 1 fsmHandControl [1:0] $end
+$var wire 1 2 fsmPersonControl $end
+$var wire 1 3 handLED $end
+$var wire 4 4 handMuxInput [3:0] $end
+$var wire 1 5 personLED $end
+$scope module personMux $end
+$var wire 1 6 a $end
+$var wire 1 7 b $end
+$var wire 1 5 out $end
+$var wire 1 2 sel $end
+$upscope $end
+$scope module handMux $end
+$var wire 4 8 a [3:0] $end
+$var wire 1 9 mux_1 $end
+$var wire 1 : mux_2 $end
+$var wire 1 3 out $end
+$var wire 2 ; sel [1:0] $end
+$scope module m1 $end
+$var wire 1 < a $end
+$var wire 1 = b $end
+$var wire 1 9 out $end
+$var wire 1 > sel $end
+$upscope $end
+$scope module m2 $end
+$var wire 1 ? a $end
+$var wire 1 @ b $end
+$var wire 1 : out $end
+$var wire 1 A sel $end
+$upscope $end
+$scope module m3 $end
+$var wire 1 9 a $end
+$var wire 1 : b $end
+$var wire 1 3 out $end
+$var wire 1 B sel $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module testIntersectionController $end
+$var wire 4 C leds1 [3:0] $end
+$var wire 4 D leds2 [3:0] $end
+$var wire 4 E leds3 [3:0] $end
+$var wire 4 F leds4 [3:0] $end
+$var reg 1 G clk $end
+$var reg 1 H dutpassed $end
+$var reg 6 I greenTime [5:0] $end
+$var reg 6 J handTime [5:0] $end
+$var reg 6 K perTime [5:0] $end
+$var reg 6 L redTime [5:0] $end
+$var reg 6 M yellowTime [5:0] $end
+$scope module intersectControl $end
+$var wire 1 N clk $end
+$var wire 6 O greenTime [5:0] $end
+$var wire 6 P handTime [5:0] $end
+$var wire 4 Q leds1 [3:0] $end
+$var wire 4 R leds2 [3:0] $end
+$var wire 4 S leds3 [3:0] $end
+$var wire 4 T leds4 [3:0] $end
+$var wire 6 U perTime [5:0] $end
+$var wire 6 V redTime [5:0] $end
+$var wire 1 W resultRedGreen $end
+$var wire 1 X resultYellow $end
+$var wire 17 Y timeRedGreen [16:0] $end
+$var wire 17 Z timeYellow [16:0] $end
+$var wire 6 [ yellowTime [5:0] $end
+$var reg 1 \ enableRedGreen $end
+$var reg 1 ] enableYellow $end
+$var reg 2 ^ lane1Control [1:0] $end
+$var reg 2 _ lane2Control [1:0] $end
+$var reg 2 ` lane3Control [1:0] $end
+$var reg 2 a lane4Control [1:0] $end
+$var reg 1 b resetRedGreen $end
+$var reg 1 c resetYellow $end
+$var reg 1 d state $end
+$scope module countRedGreen $end
+$var wire 1 N clk $end
+$var wire 17 e count_target_wire [16:0] $end
+$var wire 1 f enable_wire $end
+$var wire 1 g reset_wire $end
+$var reg 1 h count_result $end
+$var reg 17 i count_target [16:0] $end
+$var reg 17 j counter [16:0] $end
+$var reg 1 k enable $end
+$var reg 1 l reset $end
+$upscope $end
+$scope module countYellow $end
+$var wire 1 N clk $end
+$var wire 17 m count_target_wire [16:0] $end
+$var wire 1 n enable_wire $end
+$var wire 1 o reset_wire $end
+$var reg 1 p count_result $end
+$var reg 17 q count_target [16:0] $end
+$var reg 17 r counter [16:0] $end
+$var reg 1 s enable $end
+$var reg 1 t reset $end
+$upscope $end
+$scope module lane1 $end
+$var wire 2 u fsmCarControl [1:0] $end
+$var wire 4 v leds [3:0] $end
+$scope module carMux $end
+$var wire 1 w in $end
+$var wire 2 x sel [1:0] $end
+$var reg 4 y out [3:0] $end
+$upscope $end
+$upscope $end
+$scope module lane2 $end
+$var wire 2 z fsmCarControl [1:0] $end
+$var wire 4 { leds [3:0] $end
+$scope module carMux $end
+$var wire 1 | in $end
+$var wire 2 } sel [1:0] $end
+$var reg 4 ~ out [3:0] $end
+$upscope $end
+$upscope $end
+$scope module lane3 $end
+$var wire 2 !" fsmCarControl [1:0] $end
+$var wire 4 "" leds [3:0] $end
+$scope module carMux $end
+$var wire 1 #" in $end
+$var wire 2 $" sel [1:0] $end
+$var reg 4 %" out [3:0] $end
+$upscope $end
+$upscope $end
+$scope module lane4 $end
+$var wire 2 &" fsmCarControl [1:0] $end
+$var wire 4 '" leds [3:0] $end
+$scope module carMux $end
+$var wire 1 (" in $end
+$var wire 2 )" sel [1:0] $end
+$var reg 4 *" out [3:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx1 *"
+bx )"
+1("
+bx1 '"
+bx &"
+bx1 %"
+bx $"
+1#"
+bx1 ""
+bx !"
+bx1 ~
+bx }
+1|
+bx1 {
+bx z
+bx1 y
+bx x
+1w
+bx1 v
+bx u
+xt
+xs
+bx r
+bx q
+0p
+xo
+xn
+b1100001101010000 m
+xl
+xk
+bx j
+bx i
+0h
+xg
+xf
+b1100001101010000 e
+1d
+xc
+xb
+bx a
+bx `
+bx _
+bx ^
+x]
+x\
+b1010 [
+b1100001101010000 Z
+b1100001101010000 Y
+0X
+0W
+b1010 V
+b1010 U
+bx1 T
+bx1 S
+bx1 R
+bx1 Q
+b1010 P
+b1010 O
+0N
+b1010 M
+b1010 L
+b1010 K
+b1010 J
+b1010 I
+1H
+0G
+bx1 F
+bx1 E
+bx1 D
+bx1 C
+zB
+zA
+x@
+z?
+z>
+0=
+1<
+bz ;
+x:
+x9
+b10z0 8
+07
+16
+x5
+b10z0 4
+x3
+z2
+bz 1
+z0
+z/
+z.
+x-
+z,
+z+
+z*
+z)
+bz (
+x'
+x&
+x%
+bz $
+bxz #
+bz "
+z!
+$end
