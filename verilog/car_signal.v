@@ -8,6 +8,6 @@ module carSignal
  output [3:0] leds
 );
 
-   dmux1to4_new carMux(1'b1, fsmCarControl, leds);
+	dmux1to4_new carMux(1'b1, fsmCarControl, leds);
 
 endmodule
