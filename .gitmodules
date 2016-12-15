@@ -1,0 +1,3 @@
+[submodule "opencl_experiments"]
+	path = opencl_experiments
+	url = https://github.com/hdavidzhu-cabinet/comparch_final
