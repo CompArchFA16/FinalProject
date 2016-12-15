@@ -21,7 +21,7 @@ This knowledge is gained from a variety of sources. Here are a few.
 - A [Microsoft Developer blog](https://blogs.msdn.microsoft.com/nativeconcurrency/2012/03/26/warp-or-wavefront-of-gpu-threads/) explains how branching may work inside a compute unit.
 - [OpenGL](https://www.opengl.org/wiki/Rendering_Pipeline_Overview) has a detailed rendering pipeline which explains the execution process of a GPU.
 
-Notes can be found in the appendix/ folder, within the PDFs.
+Notes can be found in the `appendix/` folder, within the PDFs.
 
 ## PART 2: MIAOW
 
@@ -37,7 +37,7 @@ MIAOW has a lot of great documentation. Here are the following:
 - Their [whitepaper](https://raw.githubusercontent.com/wiki/VerticalResearchGroup/miaow/files/MIAOW_Architecture_Whitepaper.pdf) contains very important details on their architecture and process, which provided us the explanations and visuals you see in the above poster.
 - [GCN Architecture Whitepaper](GCN Architecture Whitepaper) provides additional information on MIAOW’s AMD inspiration.
 
-Additional notetaking can be found in the appendix/ folder.
+Additional notetaking can be found in the `appendix/` folder.
 
 ## PART 3: Programming
 
@@ -70,12 +70,13 @@ When we started to learn parallel programming, the first thing we worried about 
 ### OpenCL Image Filters
 The second program is an OpenCL implementation of simple filtering in general. It has a gaussian filter capability,  as well as examples of sharpening and primitive edge detection. One thing to note is that this implementation has less complexity than the one above because it does not split colors.
 The image filter code is written by following/copying  this [OpenCL tutorial](https://anteru.net/blog/2012/11/03/2009/).
-To test the program, run:
 
 ### OpenCL Matrix Multiplication
 The third program is an OpenCL implementation of matrix multiplication. It can do large-scale matrix multiplication  in parallel, limited by workgroup sizes.
 
 The matrix multiplication code is written by following/copying [this tutorial](http://gpgpu-computing4.blogspot.com/2009/09/matrix-multiplication-2-opencl.html).
+
+Both OpenCL codes live in the `opencl_experiments` directory. The README there will walk you through the execution.
 
 ## Reflection
 Generally, we reached our MVP and kept our project in a reasonable scale. We were cautious about scaling the project because we were new to GPU and parallel programming. We started from understanding basic concepts of GPU, learned about its history, its function, and the difference between GPU and CPU. Then we looked deeper into GPU through an open source project MIAOW. There we learned about its detailed structure, and the cooperations among different components. We kept each other on the same page and did well on keeping the pace with our schedule. However the programming part was a bit trickier than we expected. Parallel programming was so much differed  from traditional programmings that we had written before. Thus it took a long time for us to look for a programming platform and go through the tutorials. Our stretch goal for the programming part was to create a CUDA program that enables seamless picture blending, but as the project went further, we realized that we do not have time to reach that far. The course on Udacity was a 3-month full course and we were impossible to go through all of it. So we finally settled down on producing a blurred image, and that worked well. In all, we met our learning goals and were satisfied with how far we have reached in this project.
