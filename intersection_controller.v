@@ -64,10 +64,10 @@ carSignal lane4(lane4Control, leds4);
 always@(*)
 	begin
 		// STATE 1
-		if (state == 3'd1)
+		if (state == 3'd1) begin
 			// Set L 1,2 Green
-			lane1Control = 2'b10;
-			lane2Control = 2'b10;
+			lane1Control = 2'd2;
+			lane2Control = 2'd2;
 
 			// Set L 3,4 Red
 			lane3Control = 2'b00;
@@ -85,9 +85,10 @@ always@(*)
 			// Disable the counter and move to the next state
 			enableRedGreen = 1'b0;
 			state = state + 1;
-			
+		end
+
 		// STATE 2
-		else if (state == 3'd2)
+		else if (state == 3'd2) begin
 			// Set L 1,2 Yellow
 			lane1Control = 2'b01;
 			lane2Control = 2'b01;
@@ -108,9 +109,10 @@ always@(*)
 			// Disable the counter and move to the next state
 			enableYellow = 1'b0;
 			state = state + 1;
-		
+		end
+
 		// STATE 3
-		else if (state == 3'd3)
+		else if (state == 3'd3) begin
 			// Set L 1,2 Red
 			lane1Control = 2'b00;
 			lane2Control = 2'b00;
@@ -131,9 +133,10 @@ always@(*)
 			// Disable the counter and move to the next state
 			enableRedGreen = 1'b0;
 			state = state + 1;
-		
+		end
+
 		// STATE 4
-		else if (state == 3'd4)
+		else if (state == 3'd4) begin
 			// Set L 1,2 Red
 			lane1Control = 2'b00;
 			lane2Control = 2'b00;
@@ -154,14 +157,16 @@ always@(*)
 			// Disable the counter and move to the next state
 			enableYellow = 1'b0;
 			state = state + 1;
-		
+		end
+
 		// STATE 5
-		else
+		else begin
 			// Error: Turn all the lights to red
 			lane1Control = 2'b00;
 			lane2Control = 2'b00;
 			lane3Control = 2'b00;
 			lane4Control = 2'b00;
+		end
 	end
 
 endmodule
