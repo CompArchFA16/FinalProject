@@ -69,7 +69,7 @@ When we started to learn parallel programming, the first thing we worried about 
 
 ### OpenCL Image Filters
 The second program is an OpenCL implementation of simple filtering in general. It has a gaussian filter capability,  as well as examples of sharpening and primitive edge detection. One thing to note is that this implementation has less complexity than the one above because it does not split colors.
-The image filter code is written by following/copying  this [OpenCL tutorial](this OpenCL tutorial).
+The image filter code is written by following/copying  this [OpenCL tutorial](https://anteru.net/blog/2012/11/03/2009/).
 To test the program, run:
 
 ### OpenCL Matrix Multiplication
