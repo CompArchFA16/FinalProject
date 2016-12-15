@@ -41,12 +41,16 @@ def visualizeStates(state_map, background):
 	OUTPUT: Visualization of intersection states
 	"""
 
-	color_map = {'100': 'r', '010': 'y', '001': 'g'}
+	color_map = {'100': 'r', '010': 'y', '001': 'g', '111': 'w'}
 
 	l1_color = color_map['100']
 	l2_color = color_map['100']
 	l3_color = color_map['100']
 	l4_color = color_map['100']
+	p1_color = color_map['100']
+	p2_color = color_map['100']
+	p3_color = color_map['100']
+	p4_color = color_map['100']
 
 	plt.ion()
 
@@ -65,6 +69,18 @@ def visualizeStates(state_map, background):
 	# Light 4
 	plt.scatter(90, 143, marker='o', c=l4_color, s = 75)
 
+	# Ped 1
+	plt.scatter(90, 143, marker='o', c=p1_color, s = 50)
+
+	# Ped 2
+	plt.scatter(90, 143, marker='o', c=p2_color, s = 50)
+
+	# Ped 3
+	plt.scatter(90, 143, marker='o', c=p3_color, s = 50)
+
+	# Ped 4
+	plt.scatter(90, 143, marker='o', c=p4_color, s = 50)
+
 	plt.pause(0.05)
 
 	for state in state_map:
@@ -74,6 +90,10 @@ def visualizeStates(state_map, background):
 		l2_color = color_map[state[1]]
 		l3_color = color_map[state[2]]
 		l4_color = color_map[state[3]]
+		p1_color = color_map[state[4]]
+		p2_color = color_map[state[5]]
+		p3_color = color_map[state[6]]
+		p4_color = color_map[state[7]]
 
 		# Light 1
 		plt.scatter(112, 95, marker='o', c=l1_color, s = 75)
@@ -86,6 +106,18 @@ def visualizeStates(state_map, background):
 
 		# Light 4
 		plt.scatter(90, 143, marker='o', c=l4_color, s = 75)
+
+		# Ped 1
+		plt.scatter(75, 75, marker='o', c=p1_color, s = 50)
+
+		# Ped 2
+		plt.scatter(180, 175, marker='o', c=p2_color, s = 50)
+
+		# Ped 3
+		plt.scatter(180, 75, marker='o', c=p3_color, s = 50)
+
+		# Ped 4
+		plt.scatter(75, 175, marker='o', c=p4_color, s = 50)
 
 		plt.pause(0.05)
 
