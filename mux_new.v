@@ -4,7 +4,6 @@
 module mux2to1_new(a,b,sel,out);
 	input a,b,sel;
 	output out;
-	tri out;
 	bufif1 (out,a,sel);
 	bufif0 (out,b,sel);
 endmodule
@@ -31,7 +30,7 @@ module dmux1to4_new(in, sel, out);
 
 	always@(*)
 	begin
-		if ( sel == 2'd0) 
+		if (sel == 2'd0) 
 			out[0] = in;
 		else if (sel == 2'd1)
 			out[1] = in;
