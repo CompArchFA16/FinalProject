@@ -8,6 +8,8 @@ The report for this project can be found in VerilogIntersectionController.pdf
 
 ## Run Instructions
 
+There are currently a few bugs left in the intersection_controller testbench that create timing problems.  The current visualization simulation is based off of testbench output without these additions, and the instructions below still run in the current state.
+
 To build and visualize an intersection:
 
 **Using the script:**
