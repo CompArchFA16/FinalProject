@@ -14,29 +14,26 @@ module intersectionController
 	input [5:0] yellowTime, 
 	input [5:0] greenTime,
 
-	output [2:0] leds1,
-	output [2:0] leds2,
-	output [2:0] leds3,
-	output [2:0] leds4
+	output [3:0] leds1,
+	output [3:0] leds2,
+	output [3:0] leds3,
+	output [3:0] leds4
 );
 
 
 //// Wires ////
 
 // States
-reg state;
-assign state = 3'b001;
+reg state = 3'b001;
 
 // Counters
-wire enableRedGreen;
-wire resetRedGreen;
-reg [16:0] timeRedGreen;
-assign timeRedGreen = redTime * 13'b1001110001000;
+reg enableRedGreen;
+reg resetRedGreen;
+wire [16:0] timeRedGreen = redTime * 13'b1001110001000;
 
-wire enableYellow;
-wire resetYellow;
-reg [16:0] timeYellow;
-assign timeYellow = yellowTime * 13'b1001110001000;
+reg enableYellow;
+reg resetYellow;
+wire [16:0] timeYellow = yellowTime * 13'b1001110001000;
 
 // Lights
 reg [1:0] lane1Control;
@@ -51,8 +48,8 @@ reg [1:0] lane4Control;
 upCounter countRedGreen(clk, enableRedGreen, resetRedGreen, timeRedGreen, resultRedGreen);
 upCounter countYellow(clk, enableYellow, resetYellow, timeYellow, resultYellow);
 
-upCounter countHand(clk, enableHand, resetHand, timeHand, resultHand);
-upCounter countPerson(clk, enablePerson, resetPerson, timePerson, resultPerson);
+// upCounter countHand(clk, enableHand, resetHand, timeHand, resultHand);
+// upCounter countPerson(clk, enablePerson, resetPerson, timePerson, resultPerson);
 
 // Lights
 carSignal lane1(lane1Control, leds1);
@@ -67,8 +64,8 @@ always@(*)
 		// STATE 1
 		if (state == 3'd1) begin
 			// Set L 1,2 Green
-			lane1Control = 2'd2;
-			lane2Control = 2'd2;
+			lane1Control <= 2'd2;
+			lane2Control <= 2'd2;
 
 			// Set L 3,4 Red
 			lane3Control = 2'b00;
