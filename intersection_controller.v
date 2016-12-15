@@ -14,9 +14,10 @@ module intersectionController
 	input [5:0] yellowTime, 
 	input [5:0] greenTime,
 
-	output fsmHandControl, 
-	output fsmPersonControl,
-	output fsmCarControl
+	output [2:0] leds1,
+	output [2:0] leds2,
+	output [2:0] leds3,
+	output [2:0] leds4
 );
 
 
